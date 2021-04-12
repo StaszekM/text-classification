@@ -4,7 +4,7 @@ from flask import request
 
 from modelAccess.model_loader import get_model
 
-model = get_model()
+model, get_most_influential_vars = get_model()
 
 
 class Status(Resource):
@@ -23,5 +23,6 @@ class Prediction(Resource):
             return {"message": "Expected \"review\" field with a string value in body."}, 422
 
         result = model.predict([review])[0][0]
+        most_influential_vars = get_most_influential_vars(review, result > 0.5)
 
-        return jsonify(result=result.item())
+        return jsonify(result=result.item(), mostInfulentialVars=most_influential_vars)
