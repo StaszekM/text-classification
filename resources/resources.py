@@ -9,7 +9,7 @@ model, get_most_influential_vars = get_model()
 
 class Status(Resource):
     def get(self):
-        return {"version": 0.1, "running": True}
+        return {"version": 0.2, "running": True}
 
 
 class Prediction(Resource):
