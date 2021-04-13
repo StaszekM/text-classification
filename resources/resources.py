@@ -4,7 +4,9 @@ from flask import request
 
 from modelAccess.model_loader import get_model
 
+print('Retrieving model...')
 model, get_most_influential_vars = get_model()
+print('Model loaded.')
 
 
 class Status(Resource):
