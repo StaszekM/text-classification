@@ -9,6 +9,14 @@ model, get_most_influential_vars = get_model()
 print('Model loaded.')
 
 
+def get_description(prediction):
+    if prediction < 0.45:
+        return "The review is negative."
+    if 0.45 <= prediction <= 0.55:
+        return "The model gave an inconclusive answer - the review is neither positive nor negative"
+    return "The review is positive."
+
+
 class Status(Resource):
     def get(self):
         return {"version": 0.2, "running": True}
@@ -27,4 +35,5 @@ class Prediction(Resource):
         result = model.predict([review])[0][0]
         most_influential_vars = get_most_influential_vars(review, result > 0.5)
 
-        return jsonify(result=result.item(), mostInfulentialVars=most_influential_vars)
+        return jsonify(result=result.item(), mostInfulentialVars=most_influential_vars,
+                       description=get_description(result))
