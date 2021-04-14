@@ -6,6 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+flask = "==1.1.2"
+flask-restful = "==0.3.8"
+python-dotenv = "==0.17.0"
+gevent = "==21.1.2"
+flask-jsonpify = "==1.5.0"
+tensorflow = "==2.4.1"
+numpy = "==1.19.5"
 
 [requires]
 python_version = "3.8"
